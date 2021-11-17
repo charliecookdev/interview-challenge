@@ -33,6 +33,10 @@ export default () => {
     })
   }
 
+  const removeItem = (itemId) => {
+    setSelectedItems(prev => prev.filter(({ id }) => id !== itemId))
+  }
+
   console.log(selectedItems)
 
   return (
@@ -41,7 +45,7 @@ export default () => {
       <div className="container menu-builder">
         <div className="row">
           <MenuBuilder items={items} onClick={selectItem} />
-          <MenuPreview items={selectedItems} />
+          <MenuPreview items={selectedItems} onClick={removeItem} />
         </div>
       </div>
     </div>

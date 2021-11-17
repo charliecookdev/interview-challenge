@@ -1,7 +1,7 @@
 import React from "react";
 import DietItem from "../Atoms/DietItem";
 
-const MenuPreview = ({ items }) => {
+const MenuPreview = ({ items, onClick }) => {
   return (
     <div className="col-8">
       <h2>Menu preview</h2>
@@ -14,7 +14,7 @@ const MenuPreview = ({ items }) => {
                 <DietItem diet={diet} key={`preview-diet-${id}-${diet}`} />
               ))}
             </p>
-            <button className="remove-item">x</button>
+            <button className="remove-item" onClick={() => onClick(id)}>x</button>
           </li>
         ))}
       </ul>
