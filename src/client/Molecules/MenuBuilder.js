@@ -1,11 +1,11 @@
 import React from "react";
 import DietItem from "../Atoms/DietItem";
 
-const MenuBuilder = ({ items, onClick }) => {
+const MenuBuilder = ({ items, onClick, onTextInput }) => {
   return (
     <div className="col-4">
       <div className="filters">
-        <input className="form-control" placeholder="Name" />
+        <input className="form-control" placeholder="Name" onChange={(e) => onTextInput(e.target.value)} />
       </div>
       <ul className="item-picker">
         {items?.map((item) => (

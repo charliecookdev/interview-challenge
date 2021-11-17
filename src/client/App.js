@@ -6,14 +6,15 @@ import MenuSummary from "./Molecules/MenuSummary";
 
 export default () => {
   const [items, setItems] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([])
-  const [selectedDietaries, setSelectedDietaries] = useState(null)
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedDietaries, setSelectedDietaries] = useState(null);
+  const [searchText, setSearchText] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch('/api/items');
+        const response = await fetch(`/api/items?searchTerm=${searchText}`);
         const { items } = await response.json();
         setItems(items);
       } catch (error) {
@@ -22,7 +23,7 @@ export default () => {
     }
 
     fetchItems();
-  }, []);
+  }, [searchText]);
 
   const selectItem = (item) => {
     setSelectedItems(prev => {
@@ -50,14 +51,12 @@ export default () => {
     setSelectedDietaries(occurences)
   }, [selectedItems]);
 
-  console.log(selectedItems)
-
   return (
     <div className="wrapper">
       <MenuSummary itemCount={selectedItems.length} dietCounts={selectedDietaries} />
       <div className="container menu-builder">
         <div className="row">
-          <MenuBuilder items={items} onClick={selectItem} />
+          <MenuBuilder items={items} onClick={selectItem} onTextInput={setSearchText} />
           <MenuPreview items={selectedItems} onClick={removeItem} />
         </div>
       </div>
