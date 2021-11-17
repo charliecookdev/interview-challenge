@@ -6,6 +6,7 @@ import MenuSummary from "./Molecules/MenuSummary";
 
 export default () => {
   const [items, setItems] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([])
   const [erros, setError] = useState(null);
 
   useEffect(() => {
@@ -22,13 +23,25 @@ export default () => {
     fetchItems();
   }, []);
 
+  const selectItem = (item) => {
+    setSelectedItems(prev => {
+      if (prev.find(({ id }) => id === item.id)) {
+        return prev;
+      }
+
+      return [...prev, item];
+    })
+  }
+
+  console.log(selectedItems)
+
   return (
     <div className="wrapper">
       <MenuSummary />
       <div className="container menu-builder">
         <div className="row">
-          <MenuBuilder items={items} />
-          <MenuPreview />
+          <MenuBuilder items={items} onClick={selectItem} />
+          <MenuPreview items={selectedItems} />
         </div>
       </div>
     </div>

@@ -1,18 +1,19 @@
 import React from "react";
+import DietItem from "../Atoms/DietItem";
 
-const MenuBuilder = ({ items }) => {
+const MenuBuilder = ({ items, onClick }) => {
   return (
     <div className="col-4">
       <div className="filters">
         <input className="form-control" placeholder="Name" />
       </div>
       <ul className="item-picker">
-        {items?.map(({ name, dietaries, id }) => (
-          <li className="item" key={`${name}-${id}`}>
-            <h2>{name}</h2>
+        {items?.map((item) => (
+          <li className="item" key={`${item.name}-${item.id}`} onClick={() => onClick(item)}>
+            <h2>{item.name}</h2>
             <p>
-              {dietaries.map((diet) => (
-                <span key={`${id}-${diet}`} className="dietary">{diet}</span>
+              {item.dietaries.map((diet) => (
+                <DietItem diet={diet} key={`picker-diet-${item.id}-${diet}`} />
               ))}
             </p>
           </li>

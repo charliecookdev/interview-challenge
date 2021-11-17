@@ -1,46 +1,22 @@
 import React from "react";
+import DietItem from "../Atoms/DietItem";
 
-const MenuPreview = () => {
+const MenuPreview = ({ items }) => {
   return (
     <div className="col-8">
       <h2>Menu preview</h2>
       <ul className="menu-preview">
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
+        {items.map(({ name, dietaries, id }) => (
+          <li className="item" key={`preview-item-${id}`}>
+            <h2>{name}</h2>
+            <p>
+              {dietaries.map((diet) => (
+                <DietItem diet={diet} key={`preview-diet-${id}-${diet}`} />
+              ))}
+            </p>
+            <button className="remove-item">x</button>
+          </li>
+        ))}
       </ul>
     </div>
   );
