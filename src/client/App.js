@@ -7,7 +7,7 @@ import MenuSummary from "./Molecules/MenuSummary";
 export default () => {
   const [items, setItems] = useState(null);
   const [selectedItems, setSelectedItems] = useState([])
-  const [erros, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -41,7 +41,7 @@ export default () => {
 
   return (
     <div className="wrapper">
-      <MenuSummary />
+      <MenuSummary itemCount={selectedItems.length} />
       <div className="container menu-builder">
         <div className="row">
           <MenuBuilder items={items} onClick={selectItem} />

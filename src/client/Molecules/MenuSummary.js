@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MenuPreview = () => {
+const MenuPreview = ({ itemCount }) => {
   return (
     <div className="menu-summary">
       <div className="container">
         <div className="row">
           <div className="col-6 menu-summary-left">
-            <span>6 items</span>
+            <span>{`${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}</span>
           </div>
           <div className="col-6 menu-summary-right">
             6x <span className="dietary">ve</span>
