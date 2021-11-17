@@ -1,68 +1,22 @@
 import React from "react";
 
-const MenuBuilder = () => {
+const MenuBuilder = ({ items }) => {
   return (
     <div className="col-4">
       <div className="filters">
         <input className="form-control" placeholder="Name" />
       </div>
       <ul className="item-picker">
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-        </li>
+        {items?.map(({ name, dietaries, id }) => (
+          <li className="item" key={`${name}-${id}`}>
+            <h2>{name}</h2>
+            <p>
+              {dietaries.map((diet) => (
+                <span key={`${id}-${diet}`} className="dietary">{diet}</span>
+              ))}
+            </p>
+          </li>
+        ))}
       </ul>
     </div>
   );
