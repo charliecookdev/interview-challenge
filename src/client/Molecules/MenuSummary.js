@@ -1,6 +1,7 @@
 import React from 'react';
+import DietItem from '../Atoms/DietItem';
 
-const MenuPreview = ({ itemCount }) => {
+const MenuPreview = ({ itemCount, dietCounts }) => {
   return (
     <div className="menu-summary">
       <div className="container">
@@ -9,9 +10,12 @@ const MenuPreview = ({ itemCount }) => {
             <span>{`${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}</span>
           </div>
           <div className="col-6 menu-summary-right">
-            6x <span className="dietary">ve</span>
-            4x <span className="dietary">v</span>
-            12x <span className="dietary">n!</span>
+            {Object.keys(dietCounts || {}).map((diet) => (
+              <span key={`diet-count-${diet}`}>
+                {dietCounts[diet]}x
+                <DietItem diet={diet} />
+              </span>
+            ))}
           </div>
         </div>
       </div>

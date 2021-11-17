@@ -5,8 +5,9 @@ import MenuPreview from "./Molecules/MenuPreview";
 import MenuSummary from "./Molecules/MenuSummary";
 
 export default () => {
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([])
+  const [selectedDietaries, setSelectedDietaries] = useState(null)
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -37,11 +38,23 @@ export default () => {
     setSelectedItems(prev => prev.filter(({ id }) => id !== itemId))
   }
 
+  useEffect(() => {
+    const diets = [];
+    selectedItems.map(({ dietaries }) => diets.push(...dietaries));
+
+    const occurences = diets.reduce((acc, curr) => {
+      acc[curr] = (acc[curr] || 0) + 1;
+      return acc
+    }, {})
+
+    setSelectedDietaries(occurences)
+  }, [selectedItems]);
+
   console.log(selectedItems)
 
   return (
     <div className="wrapper">
-      <MenuSummary itemCount={selectedItems.length} />
+      <MenuSummary itemCount={selectedItems.length} dietCounts={selectedDietaries} />
       <div className="container menu-builder">
         <div className="row">
           <MenuBuilder items={items} onClick={selectItem} />
