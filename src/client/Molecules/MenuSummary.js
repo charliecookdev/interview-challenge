@@ -11,7 +11,7 @@ const MenuPreview = ({ itemCount, dietCounts }) => {
           </div>
           <div className="col-6 menu-summary-right">
             {Object.keys(dietCounts || {}).map((diet) => (
-              <span key={`diet-count-${diet}`}>
+              <span key={`diet-count-${diet}`} data-testid="diet-count">
                 {dietCounts[diet]}x
                 <DietItem diet={diet} />
               </span>
