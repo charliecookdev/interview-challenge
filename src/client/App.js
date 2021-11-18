@@ -26,6 +26,8 @@ export default () => {
   }, [searchText]);
 
   const selectItem = (item) => {
+    // pushing in the whole item here as originally thought of having an array of ids to avoid
+    // duplication of the items array but went with this approach to avoid a whole lot of .finds
     setSelectedItems(prev => {
       if (prev.find(({ id }) => id === item.id)) {
         return prev;

@@ -21,3 +21,11 @@ yarn dev (or npm run dev)
 
 ## Run tests
 yarn test (or npm run test)
+
+# Next steps
+If I had more time to come back I would update a few things:
+
+- The components could be refactored further such as creating a menu item component as the HTML used in both MenuBuilder and MenuPreview is identical
+- I would also refactor the fetching of data into a custom hook that would allow more reuse as the app scaled and more endpoints are introduced
+- I would also look to only pass back the item id when selecting an item rather than the whole item to simplify
+- I would investigate to see how to mock the server to have better test coverage - from looking at the testing-library docs there seems to be an advised way to do this via the msw package
